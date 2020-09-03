@@ -1,17 +1,14 @@
 package com.esq.gads2020practiceproject1.ui
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-
+import androidx.lifecycle.ViewModelProvider
 import com.esq.gads2020practiceproject1.R
 import com.esq.gads2020practiceproject1.viewmodel.SkillViewModel
 
-class SkillFragment : Fragment() {
+class SkillFragment : Fragment(R.layout.skill_fragment) {
     val TAG = this::class.simpleName
 
     companion object {
@@ -20,18 +17,12 @@ class SkillFragment : Fragment() {
 
     private lateinit var viewModel: SkillViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.skill_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SkillViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        viewModel = ViewModelProvider(this).get(SkillViewModel::class.java)
         viewModel.text.observe(viewLifecycleOwner, Observer<String> {
-            textView.text = it
-        })    }
+            //textView.text = it
+        })
+        super.onViewCreated(view, savedInstanceState)
+    }
 
 }

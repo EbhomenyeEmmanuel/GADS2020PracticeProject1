@@ -31,18 +31,7 @@ class MainActivity : AppCompatActivity() {
         mTabLayout = tabs
         mTabLayout!!.setupWithViewPager(viewPager)
         mTabLayout!!.setupWithViewPager(mViewPager)
-    }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.action_submit -> {
-                longToast("Submit")
-            }}
-        return super.onOptionsItemSelected(item)
+        submitBtn.setOnClickListener {  }
     }
 }

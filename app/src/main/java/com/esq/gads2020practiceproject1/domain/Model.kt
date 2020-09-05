@@ -1,5 +1,25 @@
 package com.esq.gads2020practiceproject1.domain
 
-data class LeaderDataModel(val name: String, val hours: String)
+import com.squareup.moshi.Json
 
-data class SkillDataModel(val name: String, val iq: String)
+data class LeaderDataModel(
+    @Json(name = "name")
+    private val name: String? = null,
+    @Json(name = "hours")
+    private val hours: Int? = null,
+    @Json(name = "country")
+    private val country: String? = null,
+    @Json(name = "badgeUrl")
+    private val badgeUrl: String? = null
+)
+
+data class  SkillDataModel(
+    @Json(name = "name")
+    private val name: String? = null,
+    @Json(name = "score")
+    private val score: Int? = null,
+    @Json(name = "country")
+    private val country: String? = null,
+    @Json(name = "badgeUrl")
+    private val badgeUrl: String? = null
+)

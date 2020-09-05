@@ -1,25 +1,28 @@
 package com.esq.gads2020practiceproject1.domain
 
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class LeaderDataModel(
     @Json(name = "name")
-    private val name: String? = null,
+    val name: String? = null,
     @Json(name = "hours")
-    private val hours: Int? = null,
+    val hours: Int? = null,
     @Json(name = "country")
-    private val country: String? = null,
+    val country: String? = null,
     @Json(name = "badgeUrl")
-    private val badgeUrl: String? = null
+    val badgeUrl: String? = null
 )
 
+@JsonClass(generateAdapter = true)
 data class  SkillDataModel(
     @Json(name = "name")
-    private val name: String? = null,
+    val name: String? = null,
     @Json(name = "score")
-    private val score: Int? = null,
+    val score: Int? = null,
     @Json(name = "country")
-    private val country: String? = null,
+    val country: String? = null,
     @Json(name = "badgeUrl")
-    private val badgeUrl: String? = null
+    val badgeUrl: String? = null
 )

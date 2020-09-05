@@ -3,6 +3,7 @@ package com.esq.gads2020practiceproject1.data
 import com.esq.gads2020practiceproject1.domain.LeaderDataModel
 import com.esq.gads2020practiceproject1.domain.SkillDataModel
 import com.esq.gads2020practiceproject1.domain.network.RetrofitApi
+import com.esq.gads2020practiceproject1.domain.network.RetrofitSubmitApi
 
 class Repository {
 
@@ -11,5 +12,17 @@ class Repository {
 
     suspend fun getListOfSkillLeaders(): List<SkillDataModel> =
         RetrofitApi.client.getSkillLeaders()
+
+    suspend fun submitMyDetails(
+        email: String, name: String, lastName: String, projectLink: String
+    ) {
+        val fieldMaps = mutableMapOf<String, String>()
+        fieldMaps["entry.1824927963"] = email
+        fieldMaps["entry.1877115667"] = name
+        fieldMaps["entry.2006916086"] = lastName
+        fieldMaps["entry.284483984"] = projectLink
+        return RetrofitSubmitApi.client.submitDetails(fieldMaps)
+    }
+
 
 }

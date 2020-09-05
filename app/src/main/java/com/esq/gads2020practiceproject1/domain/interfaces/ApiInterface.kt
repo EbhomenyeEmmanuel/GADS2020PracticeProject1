@@ -1,13 +1,14 @@
 package com.esq.gads2020practiceproject1.domain.interfaces
 
+import com.esq.gads2020practiceproject1.domain.LeaderDataModel
+import com.esq.gads2020practiceproject1.domain.SkillDataModel
 import retrofit2.http.GET
-import retrofit2.http.Header
 
 interface ApiInterface {
 
-    @GET("/api/hourst/")
-    suspend fun getLearningLeaders(): Any
+    @GET("/api/hours/")
+    suspend fun getLearningLeaders(): List<LeaderDataModel>
 
-    @GET("/loanapi/loanactivelist/")
-    suspend fun getSkillLeaders(): Any
+    @GET("/api/skilliq/")
+    suspend fun getSkillLeaders(): List<SkillDataModel>
 }

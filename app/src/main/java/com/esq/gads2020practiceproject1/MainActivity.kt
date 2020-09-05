@@ -1,11 +1,13 @@
 package com.esq.gads2020practiceproject1
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
 import com.biodun.networkMonitorManager.NetworkState
 import com.esq.gads2020practiceproject1.data.SectionsPagerAdapter
+import com.esq.gads2020practiceproject1.ui.SubmitActivity
 import com.esq.gads2020practiceproject1.utils.NetworkStatus
 import com.esq.gads2020practiceproject1.utils.shortToast
 import com.google.android.material.appbar.MaterialToolbar
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         mTabLayout!!.setupWithViewPager(mViewPager)
         networkStatus = NetworkStatus(this)
 
-        submitBtn.setOnClickListener { }
+        submitBtn.setOnClickListener { startActivity(Intent(this@MainActivity, SubmitActivity::class.java)) }
     }
 
     override fun onStart() {

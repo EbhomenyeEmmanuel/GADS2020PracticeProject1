@@ -36,7 +36,7 @@ class SkillAdapter(private val context: Context, private val items: List<SkillDa
             Log.d(TAG, "Item is $skillDataModel")
             with(skillDataModel) {
                 view.tvName.text = name
-                view.tvIq.text = iq
+                view.tvIq.text = "$score skill IQ Score,$country"
             }
         }
     }

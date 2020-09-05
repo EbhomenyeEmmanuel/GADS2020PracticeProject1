@@ -36,7 +36,7 @@ class LeaderAdapter(private val context: Context, private val items: List<Leader
             Log.d(TAG, "Items are $leaderDataModel")
             with(leaderDataModel) {
                 view.tvName.text = name
-                view.tvHours.text = hours
+                view.tvHours.text = "$hours learning hours,$country"
             }
         }
     }

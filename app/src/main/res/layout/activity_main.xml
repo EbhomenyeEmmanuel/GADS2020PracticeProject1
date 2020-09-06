@@ -20,7 +20,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/launch_bg"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:popupTheme="@style/Widget.MaterialComponents.PopupMenu.Overflow">
 

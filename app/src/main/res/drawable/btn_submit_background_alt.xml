@@ -6,10 +6,9 @@
             <corners android:radius="20dp" />
             <gradient
                 android:angle="360"
-                android:centerColor="@color/colorAccentDark"
                 android:endColor="@color/colorAccentDark"
                 android:startColor="@color/colorAccent"
-                android:type="linear" />
+                 />
         </shape>
     </item>
 </ripple>

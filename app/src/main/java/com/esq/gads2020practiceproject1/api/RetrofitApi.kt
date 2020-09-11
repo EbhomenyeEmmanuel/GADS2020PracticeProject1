@@ -1,13 +1,13 @@
-package com.esq.gads2020practiceproject1.domain.network
+package com.esq.gads2020practiceproject1.api
 
-import com.esq.gads2020practiceproject1.domain.interfaces.SubmitApiInterface
+import com.esq.gads2020practiceproject1.domain.interfaces.ApiInterface
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
-class RetrofitSubmitApi {
+class RetrofitApi {
     companion object {
         private val logInterceptor = HttpLoggingInterceptor().apply {
             setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -21,17 +21,17 @@ class RetrofitSubmitApi {
 
         private var retrofit: Retrofit? = null
 
-        val client: SubmitApiInterface
+        val client: ApiInterface
             get() {
                 when (retrofit) {
                     null -> retrofit = Retrofit.Builder()
                         .client(httpClient.build())
                         .addConverterFactory(MoshiConverterFactory.create())
-                        .baseUrl("https://docs.google.com/forms/d/e/")
+                        .baseUrl("http://gadsapi.herokuapp.com")
                         .build()
                 }
 
-                return retrofit!!.create(SubmitApiInterface::class.java)
+                return retrofit!!.create(ApiInterface::class.java)
             }
     }
 }

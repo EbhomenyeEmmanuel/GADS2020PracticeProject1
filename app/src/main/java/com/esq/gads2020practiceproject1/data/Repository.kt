@@ -2,8 +2,8 @@ package com.esq.gads2020practiceproject1.data
 
 import com.esq.gads2020practiceproject1.domain.LeaderDataModel
 import com.esq.gads2020practiceproject1.domain.SkillDataModel
-import com.esq.gads2020practiceproject1.domain.network.RetrofitApi
-import com.esq.gads2020practiceproject1.domain.network.RetrofitSubmitApi
+import com.esq.gads2020practiceproject1.api.RetrofitApi
+import com.esq.gads2020practiceproject1.api.RetrofitSubmitApi
 
 class Repository {
 
@@ -23,6 +23,5 @@ class Repository {
         fieldMaps["entry.284483984"] = projectLink
         return RetrofitSubmitApi.client.submitDetails(fieldMaps)
     }
-
 
 }

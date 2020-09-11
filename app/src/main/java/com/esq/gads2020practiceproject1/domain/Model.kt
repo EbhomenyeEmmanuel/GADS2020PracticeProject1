@@ -26,3 +26,7 @@ data class  SkillDataModel(
     @Json(name = "badgeUrl")
     val badgeUrl: String? = null
 )
+
+class SubmitDataModel( var userFirstName: String = "",
+                       var userLastName: String = "",
+                       var userEmail: String = "",  var userGitLink: String = "")

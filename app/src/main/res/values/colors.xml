@@ -2,5 +2,12 @@
 <resources>
     <color name="colorPrimary">#333333</color>
     <color name="colorPrimaryDark">#222222</color>
-    <color name="colorAccent">#03DAC5</color>
-</resources>
+
+    <color name="colorAccent">#FFAB40</color>
+    <color name="colorAccentDark">#FF9100</color>
+
+    <color name="colorBackground">#FAFAFA</color>
+    <color name="colorHintText">#717171</color>
+    <color name="colorTextDefault">#626262</color>
+    <color name="colorDanger">#FA0404</color>
+    <color name="colorSuccess">#05920B</color></resources>

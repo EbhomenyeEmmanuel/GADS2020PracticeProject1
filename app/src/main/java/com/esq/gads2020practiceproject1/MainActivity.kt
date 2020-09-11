@@ -16,7 +16,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var mToolbar: MaterialToolbar? = null
     private var mTabLayout: TabLayout? = null
     private var mViewPager: ViewPager? = null
     private lateinit var networkStatus: NetworkStatus
@@ -25,9 +24,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mToolbar = toolbar
-        setSupportActionBar(mToolbar)
-
         mViewPager = viewPager
         viewPager.adapter = SectionsPagerAdapter(supportFragmentManager)
 

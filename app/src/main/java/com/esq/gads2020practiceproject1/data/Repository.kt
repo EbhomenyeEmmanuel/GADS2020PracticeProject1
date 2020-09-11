@@ -3,7 +3,6 @@ package com.esq.gads2020practiceproject1.data
 import com.esq.gads2020practiceproject1.domain.LeaderDataModel
 import com.esq.gads2020practiceproject1.domain.SkillDataModel
 import com.esq.gads2020practiceproject1.api.RetrofitApi
-import com.esq.gads2020practiceproject1.api.RetrofitSubmitApi
 
 class Repository {
 
@@ -21,7 +20,7 @@ class Repository {
         fieldMaps["entry.1877115667"] = name
         fieldMaps["entry.2006916086"] = lastName
         fieldMaps["entry.284483984"] = projectLink
-        return RetrofitSubmitApi.client.submitDetails(fieldMaps)
+        return RetrofitApi.client.submitDetails(fieldMaps)
     }
 
 }

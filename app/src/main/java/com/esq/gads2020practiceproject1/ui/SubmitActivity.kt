@@ -10,7 +10,6 @@ import com.esq.gads2020practiceproject1.R
 import com.esq.gads2020practiceproject1.databinding.ActivitySubmitBinding
 import com.esq.gads2020practiceproject1.domain.interfaces.SubmitDetailsCallback
 import com.esq.gads2020practiceproject1.utils.requestFocusWithErrorMessage
-import com.esq.gads2020practiceproject1.utils.shortToast
 import com.esq.gads2020practiceproject1.viewmodel.SubmitViewModel
 import com.esq.gads2020practiceproject1.viewmodel.SubmitViewModelFactory
 import kotlinx.android.synthetic.main.activity_submit.*
@@ -18,8 +17,9 @@ import kotlinx.android.synthetic.main.activity_submit.*
 class SubmitActivity : AppCompatActivity(), SubmitDetailsCallback,
     AlertFragment.OnRequestConfirmationListener {
     lateinit var bind: ActivitySubmitBinding
-    private val _viewModel =
+    private val _viewModel by lazy {
         ViewModelProvider(this, SubmitViewModelFactory(this)).get(SubmitViewModel::class.java)
+    }
 
     private val TAG = this::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,29 +38,44 @@ class SubmitActivity : AppCompatActivity(), SubmitDetailsCallback,
         })
     }
 
-    override fun onValidationError(errorMessage: String, errorCode: Int) {
+    override fun onValidationSuccess(successMessage: String) {
+        Log.d(TAG, "onValidationSuccess: Form has been validated")
+        AlertFragment.newInstance(successMessage)
+            .show(supportFragmentManager, "")
+    }
 
-        if (errorCode == 1 || errorCode == 2) {
-            bind.editTextEmail.requestFocusWithErrorMessage(errorMessage)
-        } else {
-            bind.editTextFirstName.requestFocusWithErrorMessage(errorMessage)
+    override fun onValidationError(errorMessage: Int, errorCode: Int) {
+        Log.d(TAG, "onValidationError: code: $errorCode msg: ${applicationContext.getString(errorMessage)}")
+        when (errorCode) {
+            1 -> {
+                bind.editTextFirstName.requestFocusWithErrorMessage(applicationContext.getString(errorMessage))
+            }
+            2 -> {
+                bind.editTextLastName.requestFocusWithErrorMessage(applicationContext.getString(errorMessage))
+            }
+            3 -> {
+                bind.editTextEmail.requestFocusWithErrorMessage(applicationContext.getString(errorMessage))
+            }
+            else -> {
+                //bind.editTextProjectLink.requestFocusWithErrorMessage(errorMessage)
+            }
         }
     }
 
-    override fun onSubmitSuccess(successMsg: String) {
-        AlertFragment.newInstance(successMsg)
+    override fun onSubmitSuccess(successMsg: Int) {
+        AlertFragment.newInstance(getString(successMsg))
             .show(supportFragmentManager, "")
         Log.d(TAG, "Submitted Successfully")
     }
 
-    override fun onSubmitError(errorMessage: String) {
-        Log.d(TAG, errorMessage)
-        AlertFragment.newInstance(errorMessage)
+    override fun onSubmitError(errorMessage: Int) {
+        Log.d(TAG, "onSubmitError: ${getString(errorMessage)}")
+        AlertFragment.newInstance(getString(errorMessage))
             .show(supportFragmentManager, "")
-        shortToast(errorMessage)
     }
 
     override fun onConfirmed() {
-        Log.d(TAG, "AlertFragment Called")
+        Log.d(TAG, "onConfirmed: Called")
+        _viewModel.submitDetailsCall()
     }
 }

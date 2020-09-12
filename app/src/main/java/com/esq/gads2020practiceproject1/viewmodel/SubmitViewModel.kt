@@ -6,13 +6,14 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.webkit.URLUtil
 import androidx.lifecycle.*
+import com.esq.gads2020practiceproject1.R
 import com.esq.gads2020practiceproject1.data.Repository
 import com.esq.gads2020practiceproject1.domain.SubmitDataModel
 import com.esq.gads2020practiceproject1.domain.interfaces.SubmitDetailsCallback
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.io.IOException
 
 class SubmitViewModel(
     private var submitDetailsCallback: SubmitDetailsCallback,
@@ -120,15 +121,15 @@ class SubmitViewModel(
     fun onSubmitClicked(view: View?) {
         when (val errorCode: Int = isValidData(submitDataModel)) {
             1,2 -> {
-                submitDetailsCallback.onValidationError("Required", errorCode)
+                submitDetailsCallback.onValidationError(R.string.required, errorCode)
             } 3 -> {
-                submitDetailsCallback.onValidationError("Invalid Email", errorCode)
+                submitDetailsCallback.onValidationError(R.string.invalid_email, errorCode)
             }
             4 -> {
-                submitDetailsCallback.onValidationError("Invalid Link", errorCode)
+                submitDetailsCallback.onValidationError(R.string.invalid_link, errorCode)
             }
             5 -> {
-                submitDetailsCall(submitDataModel)
+                submitDetailsCallback.onValidationSuccess("confirmation")
             }
         }
     }
@@ -141,24 +142,27 @@ class SubmitViewModel(
             2
         } else if (!Patterns.EMAIL_ADDRESS.matcher(submitDataModel.userEmail).matches()) {
             3
-        } else if (!Patterns.WEB_URL.matcher(submitDataModel.userGitLink).matches()) {
+        } else if (URLUtil.isValidUrl(submitDataModel.userGitLink)) {
             4
         } else 5
     }
 
-    private fun submitDetailsCall(details: SubmitDataModel){
+   fun submitDetailsCall(){
+       val details = submitDataModel
         Log.d(TAG, "submitDetailsCall:")
         viewModelScope.launch {
                 toggleLoading(true)
                 delay(1000)
                 try {
                     with(details) {
+                        Log.d(TAG, "Submitting Details to repo")
                         repo.submitMyDetails(name = userFirstName, lastName = userLastName, email = userEmail, projectLink= userGitLink )
+                        toggleLoading(false)
+                        submitDetailsCallback.onSubmitSuccess(R.string.success)
                     }
-                    toggleLoading(false)
-                    submitDetailsCallback.onSubmitSuccess("success")
-                } catch (e: IOException) {
-                    submitDetailsCallback.onSubmitError("failure")
+                } catch (e: Throwable) {
+                    Log.d(TAG, "exception: ${e.message}")
+                    submitDetailsCallback.onSubmitError(R.string.failure)
                     toggleLoading(false)
                 }
             }

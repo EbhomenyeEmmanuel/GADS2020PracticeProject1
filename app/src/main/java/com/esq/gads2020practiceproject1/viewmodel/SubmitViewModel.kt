@@ -142,7 +142,7 @@ class SubmitViewModel(
             2
         } else if (!Patterns.EMAIL_ADDRESS.matcher(submitDataModel.userEmail).matches()) {
             3
-        } else if (URLUtil.isValidUrl(submitDataModel.userGitLink)) {
+        } else if (!URLUtil.isValidUrl(submitDataModel.userGitLink)) {
             4
         } else 5
     }

@@ -56,8 +56,8 @@ class SubmitActivity : AppCompatActivity(), SubmitDetailsCallback,
             3 -> {
                 bind.editTextEmail.requestFocusWithErrorMessage(applicationContext.getString(errorMessage))
             }
-            else -> {
-                //bind.editTextProjectLink.requestFocusWithErrorMessage(errorMessage)
+            4 -> {
+                bind.editTextProjectLink.requestFocusWithErrorMessage(getString(errorMessage))
             }
         }
     }

@@ -62,15 +62,15 @@ class SubmitActivity : AppCompatActivity(), SubmitDetailsCallback,
         }
     }
 
-    override fun onSubmitSuccess(successMsg: Int) {
-        AlertFragment.newInstance(getString(successMsg))
+    override fun onSubmitSuccess(successMsg: String) {
+        AlertFragment.newInstance(successMsg)
             .show(supportFragmentManager, "")
         Log.d(TAG, "Submitted Successfully")
     }
 
-    override fun onSubmitError(errorMessage: Int) {
-        Log.d(TAG, "onSubmitError: ${getString(errorMessage)}")
-        AlertFragment.newInstance(getString(errorMessage))
+    override fun onSubmitError(errorMessage: String) {
+        Log.d(TAG, "onSubmitError: $errorMessage")
+        AlertFragment.newInstance(errorMessage)
             .show(supportFragmentManager, "")
     }
 

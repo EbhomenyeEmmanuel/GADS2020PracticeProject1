@@ -18,8 +18,6 @@
     <string name="first_name">First Name</string>
     <string name="project_submission">Project Submission</string>
     <string name="confirmation">Confirmation</string>
-    <string name="success">Success</string>
-    <string name="failure">Failure</string>
     <string name="required">Required</string>
     <string name="invalid_email">Invalid Email</string>
     <string name="invalid_link">Invalid Link</string>

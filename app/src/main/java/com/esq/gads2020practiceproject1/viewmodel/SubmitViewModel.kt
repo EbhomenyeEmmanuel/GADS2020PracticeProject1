@@ -158,11 +158,11 @@ class SubmitViewModel(
                         Log.d(TAG, "Submitting Details to repo")
                         repo.submitMyDetails(name = userFirstName, lastName = userLastName, email = userEmail, projectLink= userGitLink )
                         toggleLoading(false)
-                        submitDetailsCallback.onSubmitSuccess(R.string.success)
+                        submitDetailsCallback.onSubmitSuccess("success")
                     }
                 } catch (e: Throwable) {
                     Log.d(TAG, "exception: ${e.message}")
-                    submitDetailsCallback.onSubmitError(R.string.failure)
+                    submitDetailsCallback.onSubmitError("failure")
                     toggleLoading(false)
                 }
             }
